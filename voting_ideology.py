@@ -37,7 +37,7 @@ year_select = alt.selection_single(name="SelectorName", fields=['year'], bind=ye
 
 agreeScore_point = alt.Chart(Affinity_final).mark_point(filled=True, size=90).encode(
     y = alt.Y("agree:Q", title = 'Voting Similarity',scale=alt.Scale(domain=(0, 1))),
-    x = alt.X("IdealPointDistance:Q", title = 'Idealogy Distance', scale=alt.Scale(domain=(0, 5.5))),
+    x = alt.X("IdealPointDistance:Q", title = 'Ideology Distance', scale=alt.Scale(domain=(0, 5.5))),
     color = alt.Color("ccode1:N", legend=alt.Legend(title="Country Pair Group"), scale=alt.Scale(range=['#fe7c73', '#6c9497', '#4682b4'])),
     tooltip=[
         alt.Tooltip("ccode1:N", title="Country 1"),
