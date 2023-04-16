@@ -43,7 +43,7 @@ agreeScore_point = alt.Chart(Affinity_final).mark_point(filled=True, size=90).en
         alt.Tooltip("ccode1:N", title="Country 1"),
         alt.Tooltip("ccode2:N", title="Country 2"),
         alt.Tooltip("agree:Q", title="Voting Similarity"),
-        alt.Tooltip("IdealPointDistance:Q", title="Idealogy Distance")
+        alt.Tooltip("IdealPointDistance:Q", title="Ideology Distance")
     ]
 ).transform_filter(
     year_select
