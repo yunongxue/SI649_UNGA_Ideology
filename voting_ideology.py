@@ -66,28 +66,29 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 
-# Load the Affinity data and drop unnecessary columns
-Affinity = pd.read_csv("data/Affinity.csv", encoding="ISO-8859-1")
-Affinity.drop(columns=["NVotesAll.x", "NVotesAll.y","Unnamed: 0"], inplace=True)
+# # Load the Affinity data and drop unnecessary columns
+# Affinity = pd.read_csv("data/Affinity.csv", encoding="ISO-8859-1")
+# Affinity.drop(columns=["NVotesAll.x", "NVotesAll.y","Unnamed: 0"], inplace=True)
 
-# Load the country reference data and drop unnecessary columns
-country_ref = pd.read_csv("data/states.csv", encoding="Windows-1252")
-country_ref.drop(columns=["Unnamed: 0"], inplace=True)
+# # Load the country reference data and drop unnecessary columns
+# country_ref = pd.read_csv("data/states.csv", encoding="Windows-1252")
+# country_ref.drop(columns=["Unnamed: 0"], inplace=True)
 
-# Select a subset of the Affinity data based on specific country codes
-subset_Affinity = Affinity[(Affinity['ccode1']==710)|(Affinity['ccode1']==365)|(Affinity['ccode1']==2)]
+# # Select a subset of the Affinity data based on specific country codes
+# subset_Affinity = Affinity[(Affinity['ccode1']==710)|(Affinity['ccode1']==365)|(Affinity['ccode1']==2)]
 
-# Define SQL queries to join the subset_Affinity data with country names
-query_cty_name2 = """
-SELECT A.ccode1, C.Countryname as ccode2, A.year, A.agree, A.IdealPointDistance from subset_Affinity as A LEFT JOIN country_ref as C on A.ccode2 = C.ccode 
-"""
-query_cty_name1 = """
-SELECT C.Countryname as ccode1, A.ccode2, A.year, A.agree, A.IdealPointDistance from subset_Affinity as A LEFT JOIN country_ref as C on A.ccode1 = C.ccode 
-"""
+# # Define SQL queries to join the subset_Affinity data with country names
+# query_cty_name2 = """
+# SELECT A.ccode1, C.Countryname as ccode2, A.year, A.agree, A.IdealPointDistance from subset_Affinity as A LEFT JOIN country_ref as C on A.ccode2 = C.ccode 
+# """
+# query_cty_name1 = """
+# SELECT C.Countryname as ccode1, A.ccode2, A.year, A.agree, A.IdealPointDistance from subset_Affinity as A LEFT JOIN country_ref as C on A.ccode1 = C.ccode 
+# """
 
-# Use PySQL to execute the SQL queries and create a new dataframe for the joined data
-subset_Affinity = pysqldf(query_cty_name2)
-Affinity_final = pysqldf(query_cty_name1)
+# # Use PySQL to execute the SQL queries and create a new dataframe for the joined data
+# subset_Affinity = pysqldf(query_cty_name2)
+# Affinity_final = pysqldf(query_cty_name1)
+
 
 # Load the final Affinity data
 Affinity_final = pd.read_csv("Affinity_final.csv")
