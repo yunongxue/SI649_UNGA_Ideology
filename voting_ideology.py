@@ -2,6 +2,8 @@
 import pandas as pd
 import streamlit as st
 import altair as alt
+from pandasql import sqldf
+pysqldf = lambda q: sqldf(q, globals())
 
 #### COMMENTED CODE IS THE DATA PREPROCESSING AND MANIPULATION
 # # Load the Affinity data and drop unnecessary columns
